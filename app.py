@@ -44,7 +44,6 @@ def download_model(MODEL_PATH, s3_PREFIX):
                 if 'Contents' in result:
                     for key in result['Contents']:
                         s3_key = key['Key']
-                        st.text(s3_key)
                         local_file = os.path.join(MODEL_PATH, os.path.relpath(s3_key, s3_PREFIX))
                         os.makedirs(os.path.dirname(local_file), exist_ok=True)
                         s3.download_file(BUCKET_NAME, s3_key, local_file)
